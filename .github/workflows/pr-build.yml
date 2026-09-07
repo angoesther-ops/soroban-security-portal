@@ -78,9 +78,13 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: wasm32-unknown-unknown
+          components: clippy
 
       - name: Build
         run: cargo build --release --locked
+
+      - name: Clippy
+        run: cargo clippy --locked -- -D warnings
 
       - name: Test
         run: cargo test --locked
